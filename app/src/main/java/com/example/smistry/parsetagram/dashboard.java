@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -26,6 +27,8 @@ public class dashboard extends Fragment {
     Button cameraButton;
     public final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView mImageView;
+    EditText etDescription;
+    Button postButton;
 
 
 
@@ -51,6 +54,19 @@ public class dashboard extends Fragment {
          });
 
         mImageView = view.findViewById(R.id.mImageView);
+        postButton = view.findViewById(R.id.postButton);
+        etDescription = view.findViewById(R.id.etDescription);
+
+        mImageView.setVisibility(View.INVISIBLE);
+        postButton.setVisibility(View.INVISIBLE);
+        etDescription.setVisibility(View.INVISIBLE);
+
+        postButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
 
@@ -80,6 +96,13 @@ public class dashboard extends Fragment {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageView.setImageBitmap(imageBitmap);
+
+            mImageView.setVisibility(View.VISIBLE);
+            cameraButton.setVisibility(View.INVISIBLE);
+            mImageView.setVisibility(View.VISIBLE);
+            postButton.setVisibility(View.VISIBLE);
+            etDescription.setVisibility(View.VISIBLE);
+
         }
     }
 

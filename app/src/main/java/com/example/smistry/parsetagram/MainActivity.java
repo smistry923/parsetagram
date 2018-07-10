@@ -25,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ParseUser currentUser = ParseUser.getCurrentUser();
-
-        if(currentUser != null){
-            Intent i = new Intent(MainActivity.this, HomeActivity.class);
-            startActivity(i);
-            Toast.makeText(MainActivity.this, "Automatically logged in", Toast.LENGTH_SHORT).show();
-        }
+//
+//        ParseUser currentUser = ParseUser.getCurrentUser();
+//
+//        if(currentUser != null){
+//            Intent i = new Intent(MainActivity.this, HomeActivity.class);
+//            startActivity(i);
+//            Toast.makeText(MainActivity.this, "Automatically logged in", Toast.LENGTH_SHORT).show();
+//        }
 
         usernameInput = findViewById(R.id.username);
         passwordInput = findViewById(R.id.password);
