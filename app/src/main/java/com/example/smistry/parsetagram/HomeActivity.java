@@ -19,7 +19,7 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private static final String imagePath = "/storage/emulated/0/DCIM/Camera/IMG_20180709_175418.jpg";
+    private static final String imagePath = "/storage/emulated/0/DCIM/Camera/20180709_175418.jpg";
     private EditText descriptionInput;
     private Button createButton;
     private Button refreshButton;
@@ -77,6 +77,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+
     private void loadTopPosts(){
         final Post.Query postQuery = new Post.Query();
         postQuery.getTop().withUser();
@@ -99,7 +100,7 @@ public class HomeActivity extends AppCompatActivity {
                 if(e == null){
                     for(int i = 0; i < objects.size(); i++) {
                         Log.d("HomeActivity", "Post" + i + "] = " + objects.get(i).getDescription()
-                        + "\nusername = " + objects.get(i).getUser().getUsername());
+                        + "\n username = " + objects.get(i).getUser().getUsername());
                     }
 
                 } else {
