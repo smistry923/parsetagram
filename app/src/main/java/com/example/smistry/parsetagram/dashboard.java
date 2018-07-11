@@ -31,17 +31,18 @@ public class dashboard extends Fragment {
     Button postButton;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //super.onViewCreated(view, savedInstanceState);
+
          cameraButton = view.findViewById(R.id.cameraButton);
          cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +71,6 @@ public class dashboard extends Fragment {
     }
 
 
-
     public File getPhotoFileUri(String fileName) {
         // Get safe storage directory for photos
         // Use `getExternalFilesDir` on Context to access package-specific directories.
@@ -81,10 +81,8 @@ public class dashboard extends Fragment {
         if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
             Log.d(APP_TAG, "failed to create directory");
         }
-
         // Return the file target for the photo based on filename
         File file = new File(mediaStorageDir.getPath() + File.separator + fileName);
-
         return file;
     }
 

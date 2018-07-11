@@ -21,14 +21,19 @@
             android:layout_marginBottom="53dp"
             android:text="Take Photo" />
 
-        <ImageView
+        <com.parse.ParseImageView
+            android:layout_width="match_parent"
             android:id="@+id/mImageView"
-            android:layout_width="222dp"
-            android:layout_height="243dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="46dp"
-            android:src="@android:color/white" />
+            android:layout_height="300dp"/>
+
+        <!--<ImageView-->
+            <!--android:id="@+id/mImageView"-->
+            <!--android:layout_width="222dp"-->
+            <!--android:layout_height="243dp"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="46dp"-->
+            <!--android:src="@android:color/white" />-->
 
         <EditText
             android:id="@+id/etDescription"
