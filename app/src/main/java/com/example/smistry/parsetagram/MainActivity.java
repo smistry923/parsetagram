@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 if (e == null) {
                     Log.d("Sign Up Activity", "Sign Up Successful");
                     Toast.makeText(MainActivity.this, "Sign Up Successful", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(MainActivity.this, bottomNav.class);
                     startActivity(intent);
                     finish();
 

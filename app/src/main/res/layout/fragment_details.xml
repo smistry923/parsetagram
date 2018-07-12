@@ -76,4 +76,12 @@
         android:layout_alignTop="@+id/tvUserName"
         android:layout_marginEnd="57dp"
         android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_delete" />
+
 </RelativeLayout>

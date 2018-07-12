@@ -1,5 +1,6 @@
 package com.example.smistry.parsetagram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,6 +27,7 @@ public class Details extends Fragment {
     public ImageView imageView4;
     public TextView timeStamp;
     private List<Post> mComments;
+    private ImageView close;
 
 
     @Override
@@ -35,6 +37,7 @@ public class Details extends Fragment {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
 //            mParam2 = getArguments().getString(ARG_PARAM2);
 //        }
+
 
     }
 
@@ -58,6 +61,16 @@ public class Details extends Fragment {
         imageView2 = (ImageView) view.findViewById(R.id.imageView2) ;
         imageView4 = (ImageView) view.findViewById(R.id.imageView4);
         timeStamp = (TextView) view.findViewById(R.id.timeStamp);
+        close = (ImageView) view.findViewById(R.id.close);
+
+        close.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), bottomNav.class);
+                startActivity(intent);
+            }
+
+        });
 
         Post.Query postQuery = new Post.Query().withUser();
         postQuery.getQuery(Post.class).getInBackground(id, new GetCallback<Post>(){

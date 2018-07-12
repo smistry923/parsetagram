@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.smistry.parsetagram.model.Post;
@@ -22,6 +23,8 @@ public class bottomNav extends AppCompatActivity {
     final Fragment fragment2= new dashboard();
     final Fragment fragment3= new profile();
     final Fragment Details = new Details();
+
+    ImageView close;
 
     private TextView mTextMessage;
 
@@ -59,6 +62,7 @@ public class bottomNav extends AppCompatActivity {
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.flContainer, fragment1).commit();
+
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

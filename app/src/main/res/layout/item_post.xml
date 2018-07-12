@@ -10,9 +10,9 @@
         android:id="@+id/ivProfileImage"
         android:layout_width="354dp"
         android:layout_height="386dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="41dp"
         app:srcCompat="@android:color/black"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="37dp" />
@@ -23,8 +23,8 @@
         android:layout_height="30dp"
         android:layout_above="@+id/ivProfileImage"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="-53dp"
-        android:layout_marginStart="44dp"
+        android:layout_marginBottom="-41dp"
+        android:layout_marginStart="65dp"
         android:text="TextView"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="0dp" />
@@ -35,7 +35,6 @@
         android:layout_height="35dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/ivProfileImage"
-        android:layout_marginStart="37dp"
         app:srcCompat="@drawable/ufi_heart"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="331dp" />
@@ -46,7 +45,7 @@
         android:layout_height="35dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/ivProfileImage"
-        android:layout_marginStart="79dp"
+        android:layout_marginStart="54dp"
         app:srcCompat="@drawable/ufi_comment"
         tools:layout_editor_absoluteX="64dp"
         tools:layout_editor_absoluteY="331dp" />
@@ -57,15 +56,21 @@
         android:layout_height="54dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/imageView"
-        android:layout_marginStart="36dp"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/timeStamp"
         android:layout_width="89dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/tvUserName"
-        android:layout_marginEnd="31dp"
+        android:layout_above="@+id/ivProfileImage"
+        android:layout_marginBottom="-41dp"
+        android:layout_toEndOf="@+id/tvBody"
         android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/tvUserName" />
 </RelativeLayout>

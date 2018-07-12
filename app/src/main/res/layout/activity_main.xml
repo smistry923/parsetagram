@@ -34,7 +34,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="223dp"
-        android:background="#1Ae6e6e6"
+        android:background="@drawable/login_button"
         android:capitalize="none"
         android:onClick="login"
         android:text="Log In"
