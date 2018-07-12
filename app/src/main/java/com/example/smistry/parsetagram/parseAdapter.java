@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
 import com.example.smistry.parsetagram.model.Post;
@@ -19,7 +20,7 @@ public class parseAdapter extends RecyclerView.Adapter <parseAdapter.ViewHolder>
     private List<Post> mPosts;
     public Context context;
     public parseAdapter(List<Post> posts){ mPosts = posts; }
-
+    private ShareActionProvider mShareActionProvider;
 
 
 
@@ -42,6 +43,9 @@ public class parseAdapter extends RecyclerView.Adapter <parseAdapter.ViewHolder>
             public ImageView imageView;
             public ImageView imageView2;
             public ImageView imageView4;
+            public ImageView Share;
+            public ImageView profilePic;
+
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -52,6 +56,8 @@ public class parseAdapter extends RecyclerView.Adapter <parseAdapter.ViewHolder>
             imageView2 = (ImageView) itemView.findViewById(R.id.imageView2) ;
             imageView4 = (ImageView) itemView.findViewById(R.id.imageView4);
             timeStamp = (TextView) itemView.findViewById(R.id.timeStamp);
+            Share = (ImageView) itemView.findViewById(R.id.Share);
+            profilePic = (ImageView) itemView.findViewById(R.id.profilePic);
             itemView.setOnClickListener(this);
         }
 
@@ -81,8 +87,11 @@ public class parseAdapter extends RecyclerView.Adapter <parseAdapter.ViewHolder>
         holder.tvBody.setText(post.getDescription());
         GlideApp.with(context).load(post.getImage().getUrl()).into(holder.ivProfileImage);
 
-    }
+        if(post.getUser().getParseFile("profilePic") != null) {
+            GlideApp.with(context).load(post.getUser().getParseFile("profilePic").getUrl()).circleCrop().into(holder.profilePic);
+        }
 
+    }
 
     @Override
     public int getItemCount() {
@@ -93,6 +102,7 @@ public class parseAdapter extends RecyclerView.Adapter <parseAdapter.ViewHolder>
         mPosts.clear();
         notifyDataSetChanged();
     }
+
 
 
 

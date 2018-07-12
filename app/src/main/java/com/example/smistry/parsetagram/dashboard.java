@@ -26,6 +26,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
+import java.util.ArrayList;
 
 
 public class dashboard extends Fragment {
@@ -97,6 +98,7 @@ public class dashboard extends Fragment {
         newPost.setDescription(description);
         newPost.setImage(imageFile);
         newPost.setUser(user);
+        newPost.put("comments", new ArrayList<String>());
 
         newPost.saveInBackground(new SaveCallback() {
             @Override

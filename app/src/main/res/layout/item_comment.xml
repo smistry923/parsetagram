@@ -21,45 +21,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/tvBody"
+        android:layout_alignStart="@+id/tvCommentBody"
         android:text="TextView"
         android:textSize="12sp" />
 
     <TextView
-        android:id="@+id/tvBody"
+        android:id="@+id/tvCommentBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvUserName"
-        android:layout_marginLeft="5dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_alignBottom="@+id/ivProfileImage"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="72dp"
         android:text="TextView"
         android:textSize="12dp" />
-
-    <TextView
-        android:id="@+id/tvTimeStamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:text="TextView"
-        android:textSize="12dp" />
-
-    <TextView
-        android:id="@+id/tvHandle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tvUserName"
-        android:layout_alignParentTop="true"
-        android:text="TextView"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/tvRetweets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBody"
-        android:layout_centerInParent="true"
-        android:text="TextView" />
 
 
 </RelativeLayout>

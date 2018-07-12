@@ -54,27 +54,27 @@
 
     <TextView
         android:id="@+id/tvBody"
-        android:layout_width="211dp"
-        android:layout_height="54dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/imageView"
         android:layout_marginStart="36dp"
         android:text="TextView" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/comments"
+        android:id="@+id/rvComments"
         android:layout_width="177dp"
         android:layout_height="162dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/ivProfileImage" />
+        android:layout_alignStart="@+id/tvUserName"
+        android:layout_marginBottom="13dp" />
 
     <TextView
         android:id="@+id/timeStamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/tvUserName"
-        android:layout_marginEnd="57dp"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_below="@+id/tvBody"
         android:text="TextView" />
 
     <ImageView
@@ -83,5 +83,30 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         app:srcCompat="@android:drawable/ic_delete" />
+
+    <ImageView
+        android:id="@+id/Share"
+        android:layout_width="45dp"
+        android:layout_height="44dp"
+        android:layout_below="@+id/ivProfileImage"
+        android:layout_toEndOf="@+id/imageView4"
+        app:srcCompat="@drawable/ufi_new_direct" />
+
+    <EditText
+        android:id="@+id/etComment"
+        android:layout_width="131dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvBody"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="76dp"
+        tools:text="Comment" />
+
+    <Button
+        android:id="@+id/btSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timeStamp"
+        android:layout_toEndOf="@+id/tvUserName"
+        android:text="Send" />
 
 </RelativeLayout>

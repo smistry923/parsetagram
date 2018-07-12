@@ -21,9 +21,9 @@
     <FrameLayout
         android:id="@+id/home_fragment"
         android:name="com.example.smistry.parsetagram.home"
-        android:layout_width="382dp"
-        android:layout_height="506dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="0dp"
         app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
