@@ -4,30 +4,27 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.example.smistry.parsetagram.model.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class home extends Fragment {
-    private static final String imagePath = "/storage/emulated/0/DCIM/Camera/20180709_175418.jpg";
-    private EditText descriptionInput;
-    private Button createButton;
-    private Button refreshButton;
-
+    parseAdapter postAdapter;
+    ArrayList<Post> posts;
+    RecyclerView rvPosts;
+    private SwipeRefreshLayout swipeContainer;
 
 
     @Override
@@ -39,54 +36,38 @@ public class home extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        descriptionInput = view.findViewById(R.id.description);
-        createButton = view.findViewById(R.id.create_button);
-        refreshButton = view.findViewById(R.id.refresh_button);
 
 
-        createButton.setOnClickListener(new View.OnClickListener() {
+        rvPosts= (RecyclerView) view.findViewById(R.id.rvPosts);
+        posts = new ArrayList<>();
+        postAdapter = new parseAdapter(posts);
+        rvPosts.setLayoutManager(new LinearLayoutManager((getActivity())));
+        //set the adapter
+        rvPosts.setAdapter(postAdapter);
+
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View view) {
-                final String description = descriptionInput.getText().toString();
-                final ParseUser user = ParseUser.getCurrentUser();
-
-                final File file = new File(imagePath);
-                final ParseFile parseFile = new ParseFile(file);
-
-                createPost(description, parseFile, user);
-
-            }
-        });
-
-        refreshButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                postAdapter.clear();
                 loadTopPosts();
+                swipeContainer.setRefreshing(false);
             }
         });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
+        loadTopPosts();
 
     }
-
-    private void createPost(String description, ParseFile imageFile, ParseUser user) {
-        final Post newPost = new Post();
-        newPost.setDescription(description);
-        newPost.setImage(imageFile);
-        newPost.setUser(user);
-
-        newPost.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if(e == null){
-                    Log.d("Home Activity", "Create Post Success!");
-
-                } else {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
 
     private void loadTopPosts(){
         final Post.Query postQuery = new Post.Query();
@@ -99,6 +80,8 @@ public class home extends Fragment {
                     for(int i = 0; i < objects.size(); i++) {
                         Log.d("HomeActivity", "Post" + i + "] = " + objects.get(i).getDescription()
                                 + "\n username = " + objects.get(i).getUser().getUsername());
+                        posts.add(0,objects.get(i));
+                        postAdapter.notifyDataSetChanged();
                     }
 
                 } else {

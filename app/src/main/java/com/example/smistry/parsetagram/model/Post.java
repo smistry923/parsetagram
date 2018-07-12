@@ -1,16 +1,19 @@
 package com.example.smistry.parsetagram.model;
 
+import android.text.format.DateUtils;
+
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-@ParseClassName("Post")
-public class Post extends ParseObject{
+@ParseClassName ("Post")
+ public class Post  extends ParseObject{
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_IMAGE = "image";
     private static final String KEY_USER = "user";
+
 
     public String getDescription(){
         return getString(KEY_DESCRIPTION);
@@ -50,6 +53,11 @@ public class Post extends ParseObject{
             include("user");
             return this;
         }
+    }
+
+    public String getRelativeTimeAgo() {
+        long dateMillis = getCreatedAt().getTime();
+        return DateUtils.getRelativeTimeSpanString(dateMillis, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
     }
 
 }

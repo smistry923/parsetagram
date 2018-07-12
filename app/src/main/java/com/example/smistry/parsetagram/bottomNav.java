@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.smistry.parsetagram.model.Post;
 
 
 public class bottomNav extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class bottomNav extends AppCompatActivity {
     final Fragment fragment1= new home();
     final Fragment fragment2= new dashboard();
     final Fragment fragment3= new profile();
+    final Fragment Details = new Details();
 
     private TextView mTextMessage;
 
@@ -63,6 +65,14 @@ public class bottomNav extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+    public void showDetails(Post post){
+        fragmentManager.beginTransaction();
+        Bundle args = new Bundle();
+        args.putString("Post", post.getObjectId());
+        Details.setArguments(args);
+        FragmentTransaction fragmentTransaction4 = fragmentManager.beginTransaction();
+        fragmentTransaction4.replace(R.id.home_fragment,Details).commit();
 
+    }
 
 }

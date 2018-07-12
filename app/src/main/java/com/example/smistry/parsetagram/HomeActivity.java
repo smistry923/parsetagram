@@ -112,17 +112,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-//    public class AddPhotoFragment extends Fragment{
-//        public final static int PICK_PHOTO_CODE = 0;
-//        private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
-//
-//        Button button;
-//        ImageView imageView;
-//        EditText decription;
-//        Button postbutton;
-//        String currentPhotoPath ="/storage/emulated/0/DCIM/Camera/IMG";
-//
-//
-//    }
+
+
 
 }

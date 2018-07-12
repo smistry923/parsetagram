@@ -2,12 +2,15 @@ package com.example.smistry.parsetagram;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.example.smistry.parsetagram.model.Post;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.io.File;
 
@@ -25,10 +34,12 @@ public class dashboard extends Fragment {
     public String photoFileName = "photo.jpg";
     File photoFile;
     Button cameraButton;
+    private static final String imagePath = "/storage/emulated/0/DCIM/Camera/20180709_175418.jpg";
     public final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView mImageView;
     EditText etDescription;
     Button postButton;
+
 
 
     @Override
@@ -43,17 +54,6 @@ public class dashboard extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //super.onViewCreated(view, savedInstanceState);
 
-         cameraButton = view.findViewById(R.id.cameraButton);
-         cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (takePictureIntent.resolveActivity(dashboard.this.getActivity().getPackageManager()) != null) {
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-             }
-            }
-         });
-
         mImageView = view.findViewById(R.id.mImageView);
         postButton = view.findViewById(R.id.postButton);
         etDescription = view.findViewById(R.id.etDescription);
@@ -62,10 +62,51 @@ public class dashboard extends Fragment {
         postButton.setVisibility(View.INVISIBLE);
         etDescription.setVisibility(View.INVISIBLE);
 
-        postButton.setOnClickListener(new View.OnClickListener() {
+
+        cameraButton = view.findViewById(R.id.cameraButton);
+         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
+                // Create a File reference to access to future access
+                photoFile = getPhotoFileUri(photoFileName);
+
+                // wrap File object into a content provider
+                // required for API >= 24
+                // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
+                Uri fileProvider = FileProvider.getUriForFile(getActivity(), "com.example.smistry.parsetagram", photoFile);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
+
+
+                // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+                // So as long as the result is not null, it's safe to use the intent.
+                if (intent.resolveActivity(dashboard.this.getActivity().getPackageManager()) != null) {
+                    // Start the image capture intent to take photo
+                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+                }
+            }
+
+         });
+
+
+    }
+
+    private void createPost(String description, ParseFile imageFile, ParseUser user) {
+        final Post newPost = new Post();
+        newPost.setDescription(description);
+        newPost.setImage(imageFile);
+        newPost.setUser(user);
+
+        newPost.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null){
+                    Log.d("Home Activity", "Create Post Success!");
+
+                } else {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -92,7 +133,7 @@ public class dashboard extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == -1) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            Bitmap imageBitmap = (BitmapFactory.decodeFile(photoFile.getAbsolutePath()));
             mImageView.setImageBitmap(imageBitmap);
 
             mImageView.setVisibility(View.VISIBLE);
@@ -100,6 +141,25 @@ public class dashboard extends Fragment {
             mImageView.setVisibility(View.VISIBLE);
             postButton.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
+
+            postButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final String description = etDescription.getText().toString();
+                    final ParseUser user = ParseUser.getCurrentUser();
+
+                    final File file = getPhotoFileUri(photoFileName);
+                    final ParseFile parseFile = new ParseFile(file);
+
+                    createPost(description, parseFile, user);
+
+                    mImageView.setVisibility(View.INVISIBLE);
+                    postButton.setVisibility(View.INVISIBLE);
+                    etDescription.setVisibility(View.INVISIBLE);
+                    cameraButton.setVisibility(View.VISIBLE);
+
+                }
+            });
 
         }
     }
