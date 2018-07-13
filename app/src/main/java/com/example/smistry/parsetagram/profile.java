@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -46,7 +46,7 @@ public class profile extends Fragment {
     Boolean profilePicUploaded = false;
     Button btnChangeProfilePic;
     RecyclerView rvUserPosts;
-    parseAdapter postAdapter;
+    gridAdapter gridAdapter;
     ArrayList<Post> posts;
 
 
@@ -125,11 +125,12 @@ public class profile extends Fragment {
 
         rvUserPosts= (RecyclerView) view.findViewById(R.id.rvUserPosts);
         posts = new ArrayList<>();
-        postAdapter = new parseAdapter(posts);
-        rvUserPosts.setLayoutManager(new LinearLayoutManager((getActivity())));
+        gridAdapter = new gridAdapter(getActivity(), posts);
+        //rvUserPosts.setLayoutManager(new LinearLayoutManager((getActivity())));
+        final GridLayoutManager layout = new GridLayoutManager(getContext(), 2);
+        rvUserPosts.setLayoutManager(layout);
         //set the adapter
-        rvUserPosts.setAdapter(postAdapter);
-
+        rvUserPosts.setAdapter(gridAdapter);
         loadUserTopPosts();
 
 
@@ -216,7 +217,7 @@ public class profile extends Fragment {
                                 + "\n username = " + objects.get(i).getUser().getUsername());
                         if(currentUser.getUsername().equals(objects.get(i).getUser().getUsername())){
                             posts.add(0, objects.get(i));
-                            postAdapter.notifyDataSetChanged();
+                            gridAdapter.notifyDataSetChanged();
                         }
                     }
 
