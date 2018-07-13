@@ -11,19 +11,26 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.smistry.parsetagram.model.Post;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class profile extends Fragment {
@@ -38,6 +45,10 @@ public class profile extends Fragment {
     Button upload;
     Boolean profilePicUploaded = false;
     Button btnChangeProfilePic;
+    RecyclerView rvUserPosts;
+    parseAdapter postAdapter;
+    ArrayList<Post> posts;
+
 
 
     @Override
@@ -111,6 +122,17 @@ public class profile extends Fragment {
             }
         });
 
+
+        rvUserPosts= (RecyclerView) view.findViewById(R.id.rvUserPosts);
+        posts = new ArrayList<>();
+        postAdapter = new parseAdapter(posts);
+        rvUserPosts.setLayoutManager(new LinearLayoutManager((getActivity())));
+        //set the adapter
+        rvUserPosts.setAdapter(postAdapter);
+
+        loadUserTopPosts();
+
+
     }
 
     public File getPhotoFileUri(String fileName) {
@@ -144,10 +166,10 @@ public class profile extends Fragment {
                     final File file = getPhotoFileUri(photoFileName);
                     final ParseFile parseFile = new ParseFile(file);
                     setTakeProfilePic(parseFile);
+                    Toast.makeText(getContext(),"You've uploaded a new profile picture!", Toast.LENGTH_SHORT).show();
 
                 }
             });
-
         }
     }
 
@@ -178,12 +200,34 @@ public class profile extends Fragment {
             }
         });
 
-
-
     }
 
 
+    private void loadUserTopPosts(){
+        final Post.Query postQuery = new Post.Query();
+        postQuery.getTop().withUser();
 
+        postQuery.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> objects, ParseException e) {
+                if(e == null){
+                    for(int i = 0; i < objects.size(); i++) {
+                        Log.d("HomeActivity", "Post" + i + "] = " + objects.get(i).getDescription()
+                                + "\n username = " + objects.get(i).getUser().getUsername());
+                        if(currentUser.getUsername().equals(objects.get(i).getUser().getUsername())){
+                            posts.add(0, objects.get(i));
+                            postAdapter.notifyDataSetChanged();
+                        }
+                    }
+
+                } else {
+                    e.printStackTrace();
+
+                }
+
+            }
+        });
+    }
 
 
 }
