@@ -8,14 +8,6 @@
     tools:context=".home">
 
 
-    <!--<android.support.v7.widget.Toolbar-->
-        <!--android:id="@+id/my_toolbar"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="?attr/actionBarSize"-->
-        <!--android:background="@drawable/toolbar_head"-->
-        <!--android:elevation="4dp"-->
-        <!--android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />-->
-
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"

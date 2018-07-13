@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smistry.parsetagram.model.Post;
@@ -39,7 +40,7 @@ public class profile extends Fragment {
     File photoFile;
     public final String APP_TAG = "MyProfilePic";
     public final int REQUEST_IMAGE_CAPTURE = 1;
-    ParseUser currentUser = ParseUser.getCurrentUser();
+    ParseUser currentUser;
     public String photoFileName = "profile_pic.jpg";
     ImageView profilePic;
     Button upload;
@@ -48,6 +49,8 @@ public class profile extends Fragment {
     RecyclerView rvUserPosts;
     gridAdapter gridAdapter;
     ArrayList<Post> posts;
+    TextView tvUsername;
+    TextView tvBio;
 
 
 
@@ -60,6 +63,8 @@ public class profile extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        currentUser = ParseUser.getCurrentUser();
+
         logOutButton = getView().findViewById(R.id.logOutButton);
 
         logOutButton.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +79,16 @@ public class profile extends Fragment {
 
         profilePic = view.findViewById(R.id.profilePic);
         upload = view.findViewById(R.id.upload);
+
+        tvUsername = view.findViewById(R.id.tvUsername);
+        currentUser.getUsername();
+        tvUsername.setText(currentUser.getUsername());
+
+        tvBio = view.findViewById(R.id.tvBio);
+        if(currentUser.getString("bio")!=null) {
+            tvBio.setText(currentUser.getString("bio"));
+        }
+
         btnChangeProfilePic = view.findViewById(R.id.btnChangeProfilePic);
         btnChangeProfilePic.setVisibility(View.INVISIBLE);
 
@@ -122,7 +137,6 @@ public class profile extends Fragment {
             }
         });
 
-
         rvUserPosts= (RecyclerView) view.findViewById(R.id.rvUserPosts);
         posts = new ArrayList<>();
         gridAdapter = new gridAdapter(getActivity(), posts);
@@ -132,7 +146,6 @@ public class profile extends Fragment {
         //set the adapter
         rvUserPosts.setAdapter(gridAdapter);
         loadUserTopPosts();
-
 
     }
 
