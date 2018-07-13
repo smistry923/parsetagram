@@ -48,12 +48,12 @@ public class parseAdapter extends RecyclerView.Adapter <parseAdapter.ViewHolder>
 
         public ViewHolder(View itemView){
             super(itemView);
-            ivProfileImage = (ImageView) itemView.findViewById(R.id.ivProfileImage);
+            ivProfileImage = (ImageView) itemView.findViewById(R.id.ivPostImage);
             tvUsername = (TextView) itemView.findViewById(R.id.tvUserName);
             tvBody = (TextView) itemView.findViewById(R.id.tvBody);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            imageView = (ImageView) itemView.findViewById(R.id.ivLike);
             imageView2 = (ImageView) itemView.findViewById(R.id.imageView2) ;
-            imageView4 = (ImageView) itemView.findViewById(R.id.imageView4);
+            imageView4 = (ImageView) itemView.findViewById(R.id.ivComment);
             timeStamp = (TextView) itemView.findViewById(R.id.timeStamp);
             Share = (ImageView) itemView.findViewById(R.id.Share);
             profilePic = (ImageView) itemView.findViewById(R.id.profilePic);

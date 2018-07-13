@@ -36,8 +36,8 @@ public class profile extends Fragment {
     public String photoFileName = "profile_pic.jpg";
     ImageView profilePic;
     Button upload;
-
-
+    Boolean profilePicUploaded = false;
+    Button btnChangeProfilePic;
 
 
     @Override
@@ -63,13 +63,21 @@ public class profile extends Fragment {
 
         profilePic = view.findViewById(R.id.profilePic);
         upload = view.findViewById(R.id.upload);
+        btnChangeProfilePic = view.findViewById(R.id.btnChangeProfilePic);
+        btnChangeProfilePic.setVisibility(View.INVISIBLE);
 
         if(currentUser.getParseFile("profilePic")!=null) {
-
-            GlideApp.with(getContext()).load(currentUser.getParseFile("profilePic").getUrl()).into(profilePic);
+            GlideApp.with(getContext()).load(currentUser.getParseFile("profilePic").getUrl()).circleCrop().into(profilePic);
+            profilePicUploaded = true;
         }
 
         takeProfilePic = view.findViewById(R.id.takeProfilePic);
+        if(profilePicUploaded){
+            takeProfilePic.setVisibility(View.INVISIBLE);
+            upload.setVisibility(View.INVISIBLE);
+            btnChangeProfilePic.setVisibility(View.VISIBLE);
+        }
+
         takeProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +100,15 @@ public class profile extends Fragment {
                 }
             }
 
+        });
+
+        btnChangeProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                takeProfilePic.setVisibility(View.VISIBLE);
+                upload.setVisibility(View.VISIBLE);
+                btnChangeProfilePic.setVisibility(View.INVISIBLE);
+            }
         });
 
     }

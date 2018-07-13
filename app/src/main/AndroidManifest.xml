@@ -10,6 +10,8 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
+
+
     <application
         android:name=".ParseApp"
         android:allowBackup="true"
@@ -18,6 +20,7 @@
         android:roundIcon="@drawable/insta_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -28,9 +28,9 @@ public class Details extends Fragment {
     public ImageView ivProfileImage;
     public TextView tvUsername;
     public TextView tvBody;
-    public ImageView imageView;
-    public ImageView imageView2;
-    public ImageView imageView4;
+    public ImageView ivLikes;
+    public ImageView ivComment;
+    public ImageView ivShare;
     public TextView timeStamp;
     private List<Post> mComments;
     private ImageView close;
@@ -41,6 +41,7 @@ public class Details extends Fragment {
     public ArrayList commentList;
     public commentAdapter commentAdapter;
     public ImageView ivProfilePic;
+    public Post post;
 
 
     @Override
@@ -67,12 +68,12 @@ public class Details extends Fragment {
         Bundle args = getArguments();
         String id = args.getString("Post");
 
-        ivProfileImage = (ImageView) view.findViewById(R.id.ivProfileImage);
+        ivProfileImage = (ImageView) view.findViewById(R.id.ivPostImage);
         tvUsername = (TextView) view.findViewById(R.id.tvUserName);
         tvBody = (TextView) view.findViewById(R.id.tvBody);
-        imageView = (ImageView) view.findViewById(R.id.imageView);
-        imageView2 = (ImageView) view.findViewById(R.id.imageView2) ;
-        imageView4 = (ImageView) view.findViewById(R.id.imageView4);
+        ivLikes = (ImageView) view.findViewById(R.id.ivLike);
+        ivComment = (ImageView) view.findViewById(R.id.ivComment) ;
+        ivShare = (ImageView) view.findViewById(R.id.ivShare);
         timeStamp = (TextView) view.findViewById(R.id.timeStamp);
         Share = (ImageView) view.findViewById(R.id.Share);
         close = (ImageView) view.findViewById(R.id.close);
@@ -86,6 +87,8 @@ public class Details extends Fragment {
         comments = (RecyclerView) view.findViewById(R.id.rvComments);
         comments.setLayoutManager(new LinearLayoutManager(getContext()));
         comments.setAdapter(commentAdapter);
+        etComment.setVisibility(View.INVISIBLE);
+        btSend.setVisibility(View.INVISIBLE);
 
 
         close.setOnClickListener(new View.OnClickListener(){
@@ -96,6 +99,19 @@ public class Details extends Fragment {
             }
 
         });
+
+        ivComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                etComment.setVisibility(View.VISIBLE);
+                btSend.setVisibility(View.VISIBLE);
+                comments.setVisibility(View.INVISIBLE);
+
+
+            }
+        });
+
+
 
 
 
@@ -124,6 +140,12 @@ public class Details extends Fragment {
                             object.add("comments", comment);
                             object.saveInBackground();
                             etComment.getText().clear();
+
+                            etComment.setVisibility(View.INVISIBLE);
+                            btSend.setVisibility(View.INVISIBLE);
+                            comments.setVisibility(View.VISIBLE);
+
+                            ((bottomNav)getContext()).showDetails(object);
 
                         }
                     });
