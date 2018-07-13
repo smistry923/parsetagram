@@ -64,6 +64,11 @@ public class profile extends Fragment {
         profilePic = view.findViewById(R.id.profilePic);
         upload = view.findViewById(R.id.upload);
 
+        if(currentUser.getParseFile("profilePic")!=null) {
+
+            GlideApp.with(getContext()).load(currentUser.getParseFile("profilePic").getUrl()).into(profilePic);
+        }
+
         takeProfilePic = view.findViewById(R.id.takeProfilePic);
         takeProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +83,6 @@ public class profile extends Fragment {
                 // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
                 Uri fileProvider = FileProvider.getUriForFile(getActivity(), "com.example.smistry.parsetagram", photoFile);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
-
 
                 // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
                 // So as long as the result is not null, it's safe to use the intent.
@@ -115,6 +119,7 @@ public class profile extends Fragment {
             Bitmap imageBitmap = (BitmapFactory.decodeFile(photoFile.getAbsolutePath()));
             profilePic.setImageBitmap(imageBitmap);
 
+
             upload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -122,6 +127,7 @@ public class profile extends Fragment {
                     final File file = getPhotoFileUri(photoFileName);
                     final ParseFile parseFile = new ParseFile(file);
                     setTakeProfilePic(parseFile);
+
                 }
             });
 
@@ -155,7 +161,11 @@ public class profile extends Fragment {
             }
         });
 
+
+
     }
+
+
 
 
 

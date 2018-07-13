@@ -23,7 +23,6 @@ public class parseAdapter extends RecyclerView.Adapter <parseAdapter.ViewHolder>
     private ShareActionProvider mShareActionProvider;
 
 
-
     @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -59,6 +58,7 @@ public class parseAdapter extends RecyclerView.Adapter <parseAdapter.ViewHolder>
             Share = (ImageView) itemView.findViewById(R.id.Share);
             profilePic = (ImageView) itemView.findViewById(R.id.profilePic);
             itemView.setOnClickListener(this);
+
         }
 
 
@@ -102,8 +102,6 @@ public class parseAdapter extends RecyclerView.Adapter <parseAdapter.ViewHolder>
         mPosts.clear();
         notifyDataSetChanged();
     }
-
-
 
 
 }

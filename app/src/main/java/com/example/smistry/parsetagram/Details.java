@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,6 +37,10 @@ public class Details extends Fragment {
     private ImageView Share;
     private EditText etComment;
     private Button btSend;
+    public RecyclerView comments;
+    public ArrayList commentList;
+    public commentAdapter commentAdapter;
+    public ImageView ivProfilePic;
 
 
     @Override
@@ -71,6 +78,15 @@ public class Details extends Fragment {
         close = (ImageView) view.findViewById(R.id.close);
         etComment = (EditText) view.findViewById(R.id.etComment);
         btSend = (Button) view.findViewById(R.id.btSend);
+        ivProfilePic = (ImageView) view.findViewById(R.id.ivProfilePic);
+
+        commentList = new ArrayList();
+        commentAdapter = new commentAdapter(commentList);
+
+        comments = (RecyclerView) view.findViewById(R.id.rvComments);
+        comments.setLayoutManager(new LinearLayoutManager(getContext()));
+        comments.setAdapter(commentAdapter);
+
 
         close.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -93,6 +109,12 @@ public class Details extends Fragment {
                     tvBody.setText(object.getDescription());
                     timeStamp.setText(object.getRelativeTimeAgo());
                     GlideApp.with(getContext()).load(object.getImage().getUrl()).into(ivProfileImage);
+                    //GlideApp.with(getContext()).load(object.getUser().getParseFile("profilePic").getUrl()).circleCrop().into(ivProfilePic);
+                    if(object.getUser().getParseFile("profilePic") != null) {
+                        GlideApp.with(getContext()).load(object.getUser().getParseFile("profilePic").getUrl()).circleCrop().into(ivProfilePic);
+                    }
+
+
 
                     btSend.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -105,6 +127,11 @@ public class Details extends Fragment {
 
                         }
                     });
+
+                    commentList.clear();
+                    commentList.addAll(object.getList("comments"));
+                    commentAdapter.notifyDataSetChanged();
+
 
 
 

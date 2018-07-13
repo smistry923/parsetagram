@@ -30,7 +30,7 @@ public class commentAdapter extends RecyclerView.Adapter <commentAdapter.ViewHol
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View postView = inflater.inflate(R.layout.item_post, parent, false);
+        View postView = inflater.inflate(R.layout.item_comment, parent, false);
         ViewHolder viewHolder = new ViewHolder(postView);
         return viewHolder;
     }
@@ -46,7 +46,7 @@ public class commentAdapter extends RecyclerView.Adapter <commentAdapter.ViewHol
             super(itemView);
             ivProfileImage = (ImageView) itemView.findViewById(R.id.ivProfileImage);
             tvUsername = (TextView) itemView.findViewById(R.id.tvUserName);
-            tvCommentBody = (TextView) itemView.findViewById(R.id.tvBody);
+            tvCommentBody = (TextView) itemView.findViewById(R.id.tvCommentBody);
         }
 
     }
@@ -74,6 +74,7 @@ public class commentAdapter extends RecyclerView.Adapter <commentAdapter.ViewHol
     }
 
     public void clear() {
+        mComments.clear();
         mComments.clear();
         notifyDataSetChanged();
     }
