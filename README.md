@@ -50,12 +50,9 @@ Please list two areas of the assignment you'd like to **discuss further with you
 Here's a walkthrough of implemented user stories:
 The full walkthrough is available here: http://recordit.co/eFL8AMwGox 
 
-<img src='http://g.recordit.co/eFL8AMwGox.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <img src='http://g.recordit.co/xByGcRmDrx.gif' title='Sign Up' width='' alt='Sign Up' />
-
-<img src='walkthrough.gif' title='Full gif' width='' alt='Full gif' />
-
 
 
 GIF created with [RecordIt](http://www.recordit.com).
