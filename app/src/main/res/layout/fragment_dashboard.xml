@@ -22,26 +22,26 @@
             android:text="Take Photo" />
 
         <com.parse.ParseImageView
-            android:layout_width="match_parent"
             android:id="@+id/mImageView"
-            android:layout_height="300dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
 
         <!--<ImageView-->
-            <!--android:id="@+id/mImageView"-->
-            <!--android:layout_width="222dp"-->
-            <!--android:layout_height="243dp"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_marginTop="46dp"-->
-            <!--android:src="@android:color/white" />-->
+        <!--android:id="@+id/mImageView"-->
+        <!--android:layout_width="222dp"-->
+        <!--android:layout_height="243dp"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="46dp"-->
+        <!--android:src="@android:color/white" />-->
 
         <EditText
             android:id="@+id/etDescription"
             android:layout_width="242dp"
             android:layout_height="72dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/cameraButton"
-            android:layout_marginBottom="166dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="126dp"
             tools:text="Enter caption here" />
 
         <Button
@@ -51,6 +51,15 @@
             android:layout_alignTop="@+id/cameraButton"
             android:layout_centerHorizontal="true"
             android:text="Post" />
+
+        <ImageView
+            android:id="@+id/ivCam"
+            android:layout_width="264dp"
+            android:layout_height="267dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="64dp"
+            android:src="@drawable/insta_icon" />
 
     </RelativeLayout>
 

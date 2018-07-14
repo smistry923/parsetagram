@@ -40,6 +40,7 @@ public class dashboard extends Fragment {
     ImageView mImageView;
     EditText etDescription;
     Button postButton;
+    ImageView ivCam;
 
 
 
@@ -58,6 +59,7 @@ public class dashboard extends Fragment {
         mImageView = view.findViewById(R.id.mImageView);
         postButton = view.findViewById(R.id.postButton);
         etDescription = view.findViewById(R.id.etDescription);
+        ivCam = view.findViewById(R.id.ivCam);
 
         mImageView.setVisibility(View.INVISIBLE);
         postButton.setVisibility(View.INVISIBLE);
@@ -68,6 +70,7 @@ public class dashboard extends Fragment {
          cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ivCam.setVisibility(View.INVISIBLE);
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
                 // Create a File reference to access to future access

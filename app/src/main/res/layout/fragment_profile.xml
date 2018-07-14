@@ -29,10 +29,8 @@
             android:id="@+id/takeProfilePic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="209dp"
+            android:layout_alignStart="@+id/rvUserPosts"
+            android:layout_below="@+id/profilePic"
             android:text="Take a Profile Picture!" />
 
         <Button
@@ -63,18 +61,18 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvUserPosts"
-            android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView3" />
+            android:layout_width="351dp"
+            android:layout_height="289dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="95dp"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/takeProfilePic"
-            android:layout_marginStart="131dp"
+
+            android:layout_centerHorizontal="true"
             android:fontFamily="serif"
             android:text="My Posts"
             android:textAlignment="center"
@@ -98,7 +96,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/tvUsername"
             android:layout_marginTop="100dp"
-            android:text="TextView"
+            android:text=""
             android:textSize="20sp" />
 
     </RelativeLayout>

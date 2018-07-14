@@ -44,6 +44,8 @@ public class parseAdapter extends RecyclerView.Adapter <parseAdapter.ViewHolder>
             public ImageView imageView4;
             public ImageView Share;
             public ImageView profilePic;
+            public ImageView ivBookmark;
+            public ImageView ivMore;
 
 
         public ViewHolder(View itemView){
@@ -57,6 +59,8 @@ public class parseAdapter extends RecyclerView.Adapter <parseAdapter.ViewHolder>
             timeStamp = (TextView) itemView.findViewById(R.id.timeStamp);
             Share = (ImageView) itemView.findViewById(R.id.Share);
             profilePic = (ImageView) itemView.findViewById(R.id.profilePic);
+            ivBookmark = (ImageView) itemView.findViewById(R.id.ivBookmark);
+            ivMore = (ImageView) itemView.findViewById(R.id.ivMore);
             itemView.setOnClickListener(this);
 
         }

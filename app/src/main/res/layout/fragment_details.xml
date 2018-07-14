@@ -9,11 +9,11 @@
 
     <ImageView
         android:id="@+id/ivPostImage"
-        android:layout_width="329dp"
-        android:layout_height="313dp"
+        android:layout_width="264dp"
+        android:layout_height="247dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="119dp"
         app:srcCompat="@android:color/black"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="37dp" />
@@ -22,9 +22,10 @@
         android:id="@+id/tvUserName"
         android:layout_width="192dp"
         android:layout_height="30dp"
-        android:layout_above="@+id/ivPostImage"
-        android:layout_alignEnd="@+id/ivPostImage"
-        android:layout_marginBottom="-53dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="70dp"
+        android:layout_marginTop="69dp"
         android:text="TextView"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="0dp" />
@@ -62,11 +63,12 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvComments"
-        android:layout_width="344dp"
-        android:layout_height="162dp"
-        android:layout_below="@id/timeStamp"
+        android:layout_width="340dp"
+        android:layout_height="120dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@id/timeStamp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/timeStamp"
@@ -80,6 +82,9 @@
         android:id="@+id/close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="51dp"
         android:clickable="true"
         app:srcCompat="@android:drawable/ic_delete" />
 
@@ -115,7 +120,23 @@
         android:layout_height="50dp"
         android:layout_above="@+id/ivPostImage"
         android:layout_alignStart="@+id/ivPostImage"
-        android:layout_marginBottom="-53dp"
+        android:layout_marginBottom="-119dp"
         app:srcCompat="@android:color/holo_purple" />
+
+    <ImageView
+        android:id="@+id/ivBookmark"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_alignEnd="@+id/ivPostImage"
+        android:layout_below="@+id/ivPostImage"
+        app:srcCompat="@drawable/ufi_save" />
+
+    <ImageView
+        android:id="@+id/ivMore"
+        android:layout_width="29dp"
+        android:layout_height="46dp"
+        android:layout_alignEnd="@+id/ivPostImage"
+        android:layout_alignTop="@+id/tvUserName"
+        app:srcCompat="@drawable/ufi_more" />
 
 </RelativeLayout>

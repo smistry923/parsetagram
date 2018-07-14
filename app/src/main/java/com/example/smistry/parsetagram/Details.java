@@ -42,6 +42,8 @@ public class Details extends Fragment {
     public commentAdapter commentAdapter;
     public ImageView ivProfilePic;
     public Post post;
+    public ImageView ivBookmark;
+    public ImageView ivMore;
 
 
     @Override
@@ -80,6 +82,8 @@ public class Details extends Fragment {
         etComment = (EditText) view.findViewById(R.id.etComment);
         btSend = (Button) view.findViewById(R.id.btSend);
         ivProfilePic = (ImageView) view.findViewById(R.id.ivProfilePic);
+        ivBookmark = (ImageView) view.findViewById(R.id.ivBookmark);
+        ivMore = (ImageView) view.findViewById(R.id.ivMore);
 
         commentList = new ArrayList();
         commentAdapter = new commentAdapter(commentList);
