@@ -54,6 +54,9 @@ The full walkthrough is available here: http://recordit.co/eFL8AMwGox
 
 <img src='http://g.recordit.co/xByGcRmDrx.gif' title='Sign Up' width='' alt='Sign Up' />
 
+<img src='walkthrough.gif' title='Full gif' width='' alt='Full gif' />
+
+
 
 GIF created with [RecordIt](http://www.recordit.com).
 
